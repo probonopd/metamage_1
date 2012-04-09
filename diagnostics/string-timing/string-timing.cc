@@ -35,6 +35,21 @@ class skipped_test {};
 #define SKIP  throw skipped_test()
 
 
+#ifdef CLOCK_MONOTONIC
+
+static uint64_t microclock()
+{
+	// Thanks to johnoliverdriscoll for the clock_gettime() tip.
+	
+	timespec ts;
+	
+	int got = clock_gettime( CLOCK_MONOTONIC, &ts );
+	
+	return uint64_t( ts.tv_sec ) * 1000000 + ts.tv_nsec / 1000;
+}
+
+#else
+
 static uint64_t microclock()
 {
 	timeval tv;
@@ -43,6 +58,8 @@ static uint64_t microclock()
 	
 	return uint64_t( tv.tv_sec ) * 1000000 + tv.tv_usec;
 }
+
+#endif
 
 #ifdef __RELIX__
 #define microclock() clock()
