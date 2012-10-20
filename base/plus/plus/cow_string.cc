@@ -53,7 +53,7 @@ namespace plus
 		
 		if ( pos > old_size )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "erase" );
 		}
 		
 		n = std::min( n, old_size - pos );
@@ -150,7 +150,7 @@ namespace plus
 	{
 		if ( pos > size() )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "insert" );
 		}
 		
 		return insert( pos, s.data(), s.size() );
@@ -162,7 +162,7 @@ namespace plus
 		
 		if ( pos > size()  ||  offset > s_size )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "insert" );
 		}
 		
 		n = std::min( n, s_size - offset );
@@ -176,7 +176,7 @@ namespace plus
 		
 		if ( pos > size() )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "insert" );
 		}
 		
 		char* data = mutable_data();
@@ -197,7 +197,7 @@ namespace plus
 		
 		if ( pos > size() )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "insert" );
 		}
 		
 		char* data = mutable_data();
@@ -281,7 +281,7 @@ namespace plus
 		
 		if ( pos > other_size )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "append" );
 		}
 		
 		n = std::min( n, other_size - pos );
@@ -319,7 +319,7 @@ namespace plus
 	{
 		if ( pos > size() )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "replace" );
 		}
 		
 		return replace( pos, m, s.data(), s.size() );
@@ -331,7 +331,7 @@ namespace plus
 		
 		if ( pos > size()  ||  offset > s_size )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "replace" );
 		}
 		
 		n = std::min( n, s_size - offset );
@@ -347,7 +347,7 @@ namespace plus
 		
 		if ( pos > old_size )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "replace" );
 		}
 		
 		m = std::min( m, old_size - pos );
@@ -376,7 +376,7 @@ namespace plus
 		
 		if ( pos > old_size )
 		{
-			throw std::out_of_range( __func__ );
+			throw std::out_of_range( "replace" );
 		}
 		
 		m = std::min( m, old_size - pos );
