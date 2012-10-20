@@ -5,6 +5,9 @@
 
 #include "plus/stdexcept.hh"
 
+// Standard C++
+#include <string>
+
 
 namespace plus
 {
