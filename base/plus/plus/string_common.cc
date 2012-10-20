@@ -5,15 +5,13 @@
 
 #include "plus/string_common.hh"
 
-// Standard C++
-#include <stdexcept>
-
 // debug
 #include "debug/assert.hh"
 
 // plus
 #include "plus/datum_access.hh"
 #include "plus/datum_alloc.hh"
+#include "plus/stdexcept.hh"
 
 
 #define LENGTH_ERROR_MESSAGE  "string size can't exceed 0x7fffffff"
@@ -33,7 +31,7 @@ namespace plus
 			const char* message = _32bit ? LENGTH_ERROR_MESSAGE
 			                             : LENGTH_ERROR_MESSAGE "ffffffff";
 			
-			throw std::length_error( message );
+			plus::length_error( message );
 		}
 	}
 	

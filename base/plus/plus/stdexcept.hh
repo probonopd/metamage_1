@@ -13,6 +13,8 @@
 namespace plus
 {
 	
+	void length_error( const char* message );
+	
 	void out_of_range( const char* message );
 	
 }
