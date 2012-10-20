@@ -10,7 +10,6 @@
 
 // Standard C++
 #include <algorithm>
-#include <stdexcept>
 
 // Standard C
 #include <stdlib.h>
@@ -20,6 +19,7 @@
 #include "debug/assert.hh"
 
 // plus
+#include "plus/stdexcept.hh"
 #include "plus/string_details.hh"
 
 
@@ -279,7 +279,7 @@ namespace plus
 		
 		if ( pos > size )
 		{
-			throw std::out_of_range( "plus::string" );
+			plus::out_of_range( "plus::string" );
 		}
 		
 		n = std::min( n, size - pos );
@@ -510,7 +510,7 @@ namespace plus
 		
 		if ( pos > len )
 		{
-			throw std::out_of_range( "plus::string" );
+			plus::out_of_range( "plus::string" );
 		}
 		
 		if ( len - pos < n )
@@ -545,7 +545,7 @@ namespace plus
 		
 		if ( a_pos > a_size )
 		{
-			throw std::out_of_range( "plus::string" );
+			plus::out_of_range( "plus::string" );
 		}
 		
 		a_n = std::min( a_n, a_size - a_pos );
@@ -559,7 +559,7 @@ namespace plus
 		
 		if ( a_pos > a_size )
 		{
-			throw std::out_of_range( "plus::string" );
+			plus::out_of_range( "plus::string" );
 		}
 		
 		a_n = std::min( a_n, a_size - a_pos );
@@ -568,7 +568,7 @@ namespace plus
 		
 		if ( b_pos > b_size )
 		{
-			throw std::out_of_range( "plus::string" );
+			plus::out_of_range( "plus::string" );
 		}
 		
 		b_n = std::min( b_n, b_size - b_pos );
@@ -587,7 +587,7 @@ namespace plus
 		
 		if ( a_pos > a_size )
 		{
-			throw std::out_of_range( "plus::string" );
+			plus::out_of_range( "plus::string" );
 		}
 		
 		a_n = std::min( a_n, a_size - a_pos );
