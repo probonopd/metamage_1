@@ -170,9 +170,9 @@ namespace kerosene
 		update_environ();
 	}
 	
-	template < bool putting >
 	void environ_store::overwrite( std::vector< char* >::iterator  it,
-	                               char                           *string )
+	                               char                           *string,
+	                               bool                            putting )
 	{
 		// true for putenv(), false for setenv(), known at compile time.
 		const bool new_is_user_owned = putting;
@@ -276,7 +276,7 @@ namespace kerosene
 			
 			char *const new_var = copy_var( name, name_length, value, value_length );
 			
-			overwrite< false >( it, new_var );
+			overwrite( it, new_var, false );
 		}
 	}
 	
@@ -302,7 +302,7 @@ namespace kerosene
 		}
 		else
 		{
-			overwrite< true >( it, string );
+			overwrite( it, string, true );
 		}
 	}
 	

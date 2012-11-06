@@ -30,9 +30,9 @@ namespace kerosene
 			void update_environ();
 			void preallocate();
 			
-			template < bool putting >
 			void overwrite( std::vector< char* >::iterator  it,
-	                        char                           *string );
+	                        char                           *string,
+	                        bool                            putting );
 			
 			void reset();
 		
