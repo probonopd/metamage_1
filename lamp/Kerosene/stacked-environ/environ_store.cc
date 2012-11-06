@@ -15,6 +15,19 @@
 char** environ = NULL;
 
 
+namespace std
+{
+	
+	struct iterator_traits< char** >
+	{
+		typedef ptrdiff_t difference_type ;
+		typedef char* value_type ;
+		typedef char** pointer ;
+		typedef char*& reference ;
+		typedef random_access_iterator_tag iterator_category ;
+	};
+}
+
 namespace kerosene
 {
 	
