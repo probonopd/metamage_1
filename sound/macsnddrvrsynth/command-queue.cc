@@ -34,7 +34,7 @@ enum
 
 struct basic_buffer
 {
-	UInt16 code;
+	uint16_t code;
 };
 
 struct queueable_command
@@ -113,7 +113,7 @@ int read_fd_ready( int fd )
 }
 
 static
-ssize_t read_command_header( int fd, UInt16* domain, UInt32* length )
+ssize_t read_command_header( int fd, uint16_t* domain, uint32_t* length )
 {
 	const int n_iov = 2;
 	
@@ -127,15 +127,15 @@ ssize_t read_command_header( int fd, UInt16* domain, UInt32* length )
 }
 
 static
-ssize_t read_command_data( int fd, void* buffer, UInt32 length )
+ssize_t read_command_data( int fd, void* buffer, uint32_t length )
 {
 	return read( fd, buffer, length );
 }
 
 void read_into_queue( int fd )
 {
-	UInt16 domain;
-	UInt32 length;
+	uint16_t domain;
+	uint32_t length;
 	
 	ssize_t bytes = read_command_header( fd, &domain, &length );
 	

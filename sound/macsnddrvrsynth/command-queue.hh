@@ -36,7 +36,7 @@ struct ff_buffer
 
 union sound_buffer
 {
-	SInt16 mode;
+	short mode;
 	sw_buffer square_wave;
 	ft_buffer four_tone;
 	ff_buffer free_form;
