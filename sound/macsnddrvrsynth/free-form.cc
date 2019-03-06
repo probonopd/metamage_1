@@ -3,10 +3,6 @@
 	------------
 */
 
-// Standard C++
-#include <algorithm>
-
-// macsnddrvrsynth
 #include "free-form.hh"
 
 

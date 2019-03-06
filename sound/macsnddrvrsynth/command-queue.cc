@@ -3,14 +3,19 @@
 	----------------
 */
 
+#include "command-queue.hh"
+
 // POSIX
+#include <unistd.h>
 #include <sys/uio.h>
+
+// Standard C
+#include <stdlib.h>
 
 // iota
 #include "iota/endian.hh"
 
 // macsnddrvrsynth
-#include "command-queue.hh"
 #include "options.hh"
 
 

@@ -3,12 +3,14 @@
 	--------------
 */
 
+#include "square-wave.hh"
+
+// Standard C
+#include <inttypes.h>
+#include <string.h>
+
 // Standard C++
 #include <algorithm>
-#include <inttypes.h>
-
-// macsnddrvrsynth
-#include "square-wave.hh"
 
 
 size_t synthesize_square_wave_samples( sw_buffer& buffer, uint8_t* output, size_t size )

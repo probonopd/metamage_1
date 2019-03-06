@@ -6,6 +6,10 @@
 #ifndef MACSNDDRVRSYNTH_COMMANDQUEUE_HH
 #define MACSNDDRVRSYNTH_COMMANDQUEUE_HH
 
+// Standard C
+#include <stddef.h>
+#include <stdint.h>  // needed by all command-queue.hh users, for uint8_t
+
 // SoundDriver
 #include "SoundDriver/SoundDriver.h"
 

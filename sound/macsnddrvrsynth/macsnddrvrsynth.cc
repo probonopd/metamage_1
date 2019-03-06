@@ -4,7 +4,13 @@
 */
 
 // POSIX
+#include <unistd.h>
 #include <sys/time.h>
+
+// Standard C
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 // command
 #include "command/get_option.hh"

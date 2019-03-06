@@ -6,6 +6,7 @@
 #ifndef MACSNDDRVRSYNTH_SQUAREWAVE_HH
 #define MACSNDDRVRSYNTH_SQUAREWAVE_HH
 
+// macsnddrvrsynth
 #include "command-queue.hh"
 
 
