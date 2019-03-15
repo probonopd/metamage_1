@@ -134,6 +134,9 @@ ssize_t read_command_data( int fd, void* buffer, uint32_t length )
 
 void read_into_queue( int fd )
 {
+	using iota::u16_from_big;
+	using iota::u32_from_big;
+	
 	uint16_t domain;
 	uint32_t length;
 	
@@ -146,7 +149,7 @@ void read_into_queue( int fd )
 		_exit( 1 );
 	}
 	
-	length = iota::swap_4_bytes( length );
+	length = iota::u32_from_big( length );
 	
 	switch ( domain )
 	{
@@ -186,16 +189,16 @@ void read_into_queue( int fd )
 				
 				bytes = read_command_data( fd, &buffer, length );
 				
-				buffer.mode = iota::swap_2_bytes( buffer.mode );
+				buffer.mode = u16_from_big( buffer.mode );
 				
 				switch ( buffer.mode )
 				{
 					case swMode:
 						for ( Tone* tone = buffer.square_wave.rec.triplets; tone->count != 0 && tone->amplitude != 0 && tone->duration != 0; ++tone )
 						{
-							tone->count = iota::swap_2_bytes( tone->count );
-							tone->amplitude = iota::swap_2_bytes( tone->amplitude );
-							tone->duration = iota::swap_2_bytes( tone->duration );
+							tone->count     = u16_from_big( tone->count     );
+							tone->amplitude = u16_from_big( tone->amplitude );
+							tone->duration  = u16_from_big( tone->duration  );
 						}
 						
 						buffer.square_wave.current_tone = &buffer.square_wave.rec.triplets[ 0 ];
@@ -208,7 +211,7 @@ void read_into_queue( int fd )
 						break;
 					
 					case ffMode:
-						buffer.free_form.rec.count = iota::swap_4_bytes( buffer.free_form.rec.count );
+						buffer.free_form.rec.count = u32_from_big( buffer.free_form.rec.count );
 						buffer.free_form.size = length - ( sizeof buffer.free_form.rec.mode + sizeof buffer.free_form.rec.count );
 						buffer.free_form.elapsed_samples = 0;
 						
