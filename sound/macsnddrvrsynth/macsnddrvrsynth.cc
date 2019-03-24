@@ -217,8 +217,9 @@ unsigned ticks_from_microseconds( unsigned long long duration )
 }
 
 static
-unsigned long long microseconds_from_ticks( unsigned ticks )
+unsigned long microseconds_from_ticks( unsigned ticks )
 {
+	// FIXME:  This overflows at 258344 ticks (4295 seconds, or 71.6 minutes)
 	return ticks * us_per_tick;
 }
 
