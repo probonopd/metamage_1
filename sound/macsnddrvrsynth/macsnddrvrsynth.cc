@@ -137,7 +137,7 @@ char* const* get_options( char** argv )
 	
 	++argv;  // skip arg 0
 	
-	while ( (opt = command::get_option( (char* const**) &argv, options, command::Flag_return_errors ) ) > 0 )
+	while ( (opt = command::get_option( (char* const**) &argv, options ) ) > 0 )
 	{
 		switch ( opt )
 		{
