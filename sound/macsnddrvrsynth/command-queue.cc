@@ -23,7 +23,7 @@
 
 #define PROGRAM  "macsnddrvrsynth"
 
-#define WARN( msg )  if ( verbosity >= 1 ) write( STDERR_FILENO, STR_LEN( PROGRAM ": " msg "\n" ) )
+#define WARN( msg )  if ( verbosity >= 1 ) write( STDERR_FILENO, STR_LEN( PROGRAM ": " msg "\n" ) ); else
 
 
 enum

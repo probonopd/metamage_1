@@ -32,7 +32,7 @@
 
 #define USAGE "Usage: " PROGRAM " [--in-fd] [--out-fd] [--stream] [--verbose]\n"
 
-#define WARN( msg )  if ( verbosity >= 1 ) write( STDERR_FILENO, STR_LEN( PROGRAM ": " msg "\n" ) )
+#define WARN( msg )  if ( verbosity >= 1 ) write( STDERR_FILENO, STR_LEN( PROGRAM ": " msg "\n" ) ); else
 
 
 static const uint8_t silence = 0x80;
