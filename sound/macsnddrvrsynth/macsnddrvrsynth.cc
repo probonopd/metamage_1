@@ -18,9 +18,6 @@
 // gear
 #include "gear/parse_decimal.hh"
 
-// math
-#include "math/integer.hh"
-
 // macsnddrvrsynth
 #include "command-queue.hh"
 #include "four-tone.hh"
@@ -203,9 +200,7 @@ timeval timeval_sub( const timeval& a, const timeval& b )
 static
 unsigned long long microseconds( const timeval& tv )
 {
-	using math::integer::long_multiply;
-	
-	return long_multiply( tv.tv_sec, 1000000 ) + tv.tv_usec;
+	return tv.tv_sec * 1000000ull + tv.tv_usec;
 }
 
 static const int us_per_tick = 16625;
