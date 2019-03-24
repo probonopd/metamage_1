@@ -85,6 +85,7 @@ void pop_from_queue()
 		queueable_command* new_head = command_queue_head->next;
 		free( command_queue_head );
 		command_queue_head = new_head;
+		
 		if ( command_queue_head == NULL )
 		{
 			command_queue_tail = NULL;
@@ -105,6 +106,7 @@ int read_fd_ready( int fd )
 	fd_set readfds;
 	FD_ZERO( &readfds );
 	FD_SET( fd, &readfds );
+	
 	struct timeval tv;
 	tv.tv_sec = 0;
 	tv.tv_usec = 0;

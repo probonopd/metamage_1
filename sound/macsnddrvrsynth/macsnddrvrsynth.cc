@@ -107,6 +107,7 @@ void synthesize_tick()
 				WARN( "unsupported synthesizer mode" );
 				break;
 		}
+		
 		if ( samples_synthesized == 0 )
 		{
 			pop_from_queue();
@@ -237,11 +238,13 @@ void event_loop()
 		if ( elapsed_ticks > 0 )
 		{
 			unsigned ticks_left = elapsed_ticks;
+			
 			do
 			{
 				synthesize_tick();
 				--ticks_left;
-			} while ( ticks_left > 0 );
+			}
+			while ( ticks_left > 0 );
 			
 			then.tv_usec += microseconds_from_ticks( elapsed_ticks );
 			then.tv_sec += then.tv_usec / 1000000;
