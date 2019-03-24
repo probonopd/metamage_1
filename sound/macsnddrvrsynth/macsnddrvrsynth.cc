@@ -44,12 +44,13 @@ static const uint8_t silence = 0x80;
 
 enum
 {
+	Opt_in_fd   = 'i',
+	Opt_out_fd  = 'o',
+	Opt_verbose = 'v',
+	
 	Opt_last_byte = 255,
 	
-	Opt_in_fd,
-	Opt_out_fd,
 	Opt_stream,
-	Opt_verbose,
 };
 
 static command::option options[] =
