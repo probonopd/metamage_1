@@ -149,6 +149,11 @@ void read_into_queue( int fd )
 		_exit( 1 );
 	}
 	
+	if ( bytes == 0 )
+	{
+		_exit( 0 );
+	}
+	
 	length = iota::u32_from_big( length );
 	
 	switch ( domain )
