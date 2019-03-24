@@ -37,8 +37,6 @@
 
 #define WARN( msg )  if ( verbosity >= 1 ) write( STDERR_FILENO, STR_LEN( PROGRAM ": " msg "\n" ) )
 
-#define INFO( msg )  if ( verbosity >= 2 ) write( STDOUT_FILENO, STR_LEN( PROGRAM ": " msg "\n" ) )
-
 
 static const uint8_t silence = 0x80;
 
