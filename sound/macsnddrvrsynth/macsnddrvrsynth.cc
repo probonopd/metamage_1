@@ -19,6 +19,7 @@
 #include "gear/parse_decimal.hh"
 
 // macsnddrvrsynth
+#include "clock.hh"
 #include "command-queue.hh"
 #include "four-tone.hh"
 #include "free-form.hh"
@@ -173,65 +174,19 @@ char* const* get_options( char** argv )
 	return argv;
 }
 
-// These three functions are copy/pasted from time.cc in ams-common:
-
-static
-void time( timeval* now )
-{
-	gettimeofday( now, NULL );
-}
-
-static
-timeval timeval_sub( const timeval& a, const timeval& b )
-{
-	time_t  sec  = a.tv_sec  - b.tv_sec;
-	int32_t usec = a.tv_usec - b.tv_usec;
-	
-	if ( usec < 0 )
-	{
-		usec += 1000000;
-		--sec;
-	}
-	
-	timeval result = { sec, usec };
-	
-	return result;
-}
-
-static
-unsigned long long microseconds( const timeval& tv )
-{
-	return tv.tv_sec * 1000000ull + tv.tv_usec;
-}
-
 static const int us_per_tick = 16625;
-
-static
-unsigned ticks_from_microseconds( unsigned long long duration )
-{
-	return duration / us_per_tick;
-}
-
-static
-unsigned long microseconds_from_ticks( unsigned ticks )
-{
-	// FIXME:  This overflows at 258344 ticks (4295 seconds, or 71.6 minutes)
-	return ticks * us_per_tick;
-}
 
 static
 void event_loop()
 {
-	timeval then;
-	time( &then );
+	uint64_t then = uptime();
 	
 	while ( true )
 	{
-		timeval now;
-		time( &now );
+		uint64_t now = uptime();
 		
-		timeval elapsed = timeval_sub( now, then );
-		unsigned elapsed_ticks = ticks_from_microseconds( microseconds( elapsed ) );
+		uint64_t elapsed = now - then;
+		unsigned elapsed_ticks = elapsed / uptime_units_per_tick;
 		
 		queue_pending_commands();
 		
@@ -246,9 +201,7 @@ void event_loop()
 			}
 			while ( ticks_left > 0 );
 			
-			then.tv_usec += microseconds_from_ticks( elapsed_ticks );
-			then.tv_sec += then.tv_usec / 1000000;
-			then.tv_usec %= 1000000;
+			then += elapsed_ticks * uptime_units_per_tick;
 		}
 		
 		timespec frame_time = { 0, us_per_tick * 1000 / 2 };
