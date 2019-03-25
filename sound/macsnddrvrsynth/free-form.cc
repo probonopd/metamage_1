@@ -12,6 +12,7 @@ size_t synthesize_free_form_samples( ff_buffer& buffer, uint8_t* output, size_t 
 	
 	Fixed sample_index = buffer.rec.count * buffer.elapsed_samples;
 	size_t byte_index = sample_index >> 16;
+	
 	while ( byte_index < buffer.size && samples_synthesized < size )
 	{
 		output[ samples_synthesized ] = buffer.rec.waveBytes[ sample_index >> 16 ];
@@ -19,6 +20,7 @@ size_t synthesize_free_form_samples( ff_buffer& buffer, uint8_t* output, size_t 
 		byte_index = sample_index >> 16;
 		++samples_synthesized;
 	}
+	
 	buffer.elapsed_samples += samples_synthesized;
 	
 	return samples_synthesized;

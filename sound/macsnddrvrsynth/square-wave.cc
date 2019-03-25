@@ -18,6 +18,7 @@ size_t synthesize_square_wave_samples( sw_buffer& buffer, uint8_t* output, size_
 	size_t samples_synthesized = 0;
 	
 	const Tone* tone = buffer.current_tone;
+	
 	while ( tone->count != 0 && tone->amplitude != 0 && tone->duration != 0 )
 	{
 		const long long ns_per_sec = 1000 * 1000 * 1000;
@@ -34,6 +35,7 @@ size_t synthesize_square_wave_samples( sw_buffer& buffer, uint8_t* output, size_
 		target_index += period_samples;
 		
 		ssize_t tone_samples_left = tone->duration * 370 - buffer.elapsed_tone_samples;
+		
 		while ( tone_samples_left > 0 && samples_synthesized < size )
 		{
 			size_t tone_sample_count = std::min( (size_t) tone_samples_left, (size_t) ( target_index >> 24 ) - buffer.elapsed_tone_samples );
