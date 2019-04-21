@@ -7,6 +7,7 @@ install:
   - sudo apt-get -y install libssl-dev
 
 script:
+  - INSTALL_PREFIX=/usr ./configure
   - make ams-x11
   - mkdir -p appdir/usr/bin ; cp ams-x11 usr/bin/
   - find appdir/
