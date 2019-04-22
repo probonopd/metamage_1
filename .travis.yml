@@ -7,8 +7,8 @@ install:
   - sudo apt-get -y install libssl-dev
 
 script:
-  - git clone https://github.com/jjuran/freemount
-  - git clone https://github.com/jjuran/ams-68k-bin
+  - ( cd .. ; git clone https://github.com/jjuran/freemount )
+  - ( cd .. ; git clone https://github.com/jjuran/ams-68k-bin )
   - INSTALL_PREFIX=/usr ./configure
   - make ams-x11
   - mkdir -p appdir/usr/bin ; cp ams-x11 usr/bin/
