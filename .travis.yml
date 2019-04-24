@@ -9,7 +9,7 @@ install:
 script:
   - ( cd .. ; git clone https://github.com/jjuran/freemount )
   - ( cd .. ; git clone https://github.com/jjuran/ams-68k-bin )
-  - export PATH=$(readlink -f .)
+  - export PATH=$(readlink -f .):$PATH
   - INSTALL_PREFIX=/usr ./configure
   - make ams-x11
   - ls .
