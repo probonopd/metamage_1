@@ -12,7 +12,7 @@ script:
   - export PATH=$(readlink -f .):$PATH
   - INSTALL_PREFIX=/usr ./configure
   - make ams-x11
-  - ls .
+  - find . -name vx
   - mkdir -p appdir/usr/bin
   - find appdir/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
