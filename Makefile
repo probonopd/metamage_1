@@ -128,9 +128,9 @@ display-check:
 ams-linux-demo: ams-linux-check display-check
 	PATH="$$PWD/bin:$$PWD/var/out:$$PATH" ./scripts/ams
 
-ams-x11: $(AMS_REPOS)
+ams-x11: $(AMS_REPOS) ams-vx-Z
 	./build.pl -i $(AMS_TOOLS) interact-x11
-	PATH="$$PWD/var/out:$$PATH" EXHIBIT_INTERACT=interact-x11 ./scripts/ams
+	PATH="$$PWD/bin:$$PWD/var/out:$$PATH" EXHIBIT_INTERACT=interact-x11 ./scripts/ams
 
 ams-osx: $(AMS_REPOS) macward-compat.git
 	bin/build-app Genie
