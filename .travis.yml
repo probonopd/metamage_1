@@ -10,7 +10,7 @@ script:
   - ( cd .. ; git clone https://github.com/jjuran/freemount )
   - ( cd .. ; git clone https://github.com/jjuran/ams-68k-bin )
   - INSTALL_PREFIX=/usr ./configure
-  - make ams-x11
+  - make ams-x11-build
   - find .
   - mkdir -p appdir/usr/bin
   - find appdir/
