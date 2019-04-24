@@ -9,12 +9,9 @@ install:
 script:
   - ( cd .. ; git clone https://github.com/jjuran/freemount )
   - ( cd .. ; git clone https://github.com/jjuran/ams-68k-bin )
-  - export PATH=$(readlink -f .)/v/:$(readlink -f .)/var/out/:$PATH # FIXME: This is undocumented?
   - INSTALL_PREFIX=/usr ./configure
   - make ams-x11
   - find .
-  - echo $PATH
-  - which vx
   - mkdir -p appdir/usr/bin
   - find appdir/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
