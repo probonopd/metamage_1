@@ -12,7 +12,7 @@ script:
   - export PATH=$(readlink -f .)/v/:$(readlink -f .)/var/out/:$PATH # FIXME: This is undocumented?
   - INSTALL_PREFIX=/usr ./configure
   - make ams-x11
-  - find . -name vx
+  - find .
   - echo $PATH
   - which vx
   - mkdir -p appdir/usr/bin
