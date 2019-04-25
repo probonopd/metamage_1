@@ -125,21 +125,26 @@ display-check:
 	@test -z "$(DISPLAY)" || echo
 	@test -z "$(DISPLAY)" || exit 1
 
+NEW_PATH = PATH="$$PWD/bin:$$PWD/var/out:$$PATH"
+AMS_ROOT = var/links/ams-68k-bin
+AMS_VARS = AMS_BIN=$(AMS_ROOT)/bin AMS_LIB=$(AMS_ROOT)/lib AMS_MNT=$(AMS_ROOT)/mnt
+RUN_AMS  = $(NEW_PATH) $(AMS_VARS) ./scripts/ams
+
 ams-linux-demo: ams-linux-check display-check
-	PATH="$$PWD/bin:$$PWD/var/out:$$PATH" ./scripts/ams
+	$(RUN_AMS)
 
 ams-x11-build: $(AMS_REPOS) ams-vx-Z
 	./build.pl -i $(AMS_TOOLS) interact-x11
 
 ams-x11: ams-x11-build
-	PATH="$$PWD/bin:$$PWD/var/out:$$PATH" EXHIBIT_INTERACT=interact-x11 ./scripts/ams
+	EXHIBIT_INTERACT=interact-x11 $(RUN_AMS)
 
 ams-osx: $(AMS_REPOS) macward-compat.git
 	bin/build-app Genie
 	mkdir -p ~/var/run/fs
 	open var/build/dbg/bin/Genie/MacRelix.app
 	./build.pl -i $(AMS_TOOLS) uunix interact
-	PATH="$$PWD/var/out:$$PATH" ./scripts/ams
+	$(RUN_AMS)
 
 sndtrack:
 	./build.pl -i vx
