@@ -12,8 +12,21 @@ script:
   - INSTALL_PREFIX=/usr ./configure
   - make ams-x11-build
   - find .
-  - mkdir -p appdir/usr/bin
-  - find appdir/
+  - mkdir -p ./appdir/usr/bin/
+  - cp ./var/out/* ./appdir/usr/bin/
+  - cp ./bin/"{vx -Z}" ./appdir/usr/bin/
+  - mkdir -p ./appdir/usr/lib/
+  # Where in https://api.travis-ci.com/v3/job/195433570/log.txt is ams-*?
+  # I only find source code files with that name
+  # FIXME: The following mkdir and cp operations up to "find ./appdir/" should all be done by "make install"
+  # https://github.com/jjuran/metamage_1/issues/9#issuecomment-486469039
+  - cp -r ./v68k/modules/ams-* ./appdir/usr/lib/
+  - mkdir -p ./appdir/usr/mnt/
+  - cp -r ./v68k/ams/resources ./appdir/usr/mnt/
+  - cp -r ./apps/mac/* ./appdir/usr/mnt/
+  - mkdir -p ./appdir/usr/share/applications/ ; touch ./appdir/usr/share/applications/ams.desktop # FIXME
+  - mkdir -p ./appdir/usr/share/icons/scalable/apps/ ; touch ./appdir/usr/share/icons/scalable/apps/ams.svg # FIXME
+  - find ./appdir/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
