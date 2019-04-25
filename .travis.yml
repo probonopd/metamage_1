@@ -12,14 +12,12 @@ script:
   - INSTALL_PREFIX=/usr ./configure
   - make ams-x11-build
   - find .
+  # FIXME: The following mkdir and cp operations up to "find ./appdir/" should all be done by "make install"
+  # https://github.com/jjuran/metamage_1/issues/9#issuecomment-486469039
   - mkdir -p ./appdir/usr/bin/
   - cp ./var/out/* ./appdir/usr/bin/
   - cp "bin/vx -Z" ./appdir/usr/bin/ # FIXME: Blanks in filenames tend to break
   - mkdir -p ./appdir/usr/lib/
-  # Where in https://api.travis-ci.com/v3/job/195433570/log.txt is ams-*?
-  # I only find source code files with that name
-  # FIXME: The following mkdir and cp operations up to "find ./appdir/" should all be done by "make install"
-  # https://github.com/jjuran/metamage_1/issues/9#issuecomment-486469039
   - cp -r ./v68k/modules/ams-* ./appdir/usr/lib/
   - mkdir -p ./appdir/usr/mnt/
   - cp -r ./v68k/ams/resources ./appdir/usr/mnt/
@@ -35,7 +33,7 @@ script:
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh APPNAME*.AppImage* appd*.tar.bz2
+  - bash upload.sh appdir.tar.bz2
   
 branches:
   except:
