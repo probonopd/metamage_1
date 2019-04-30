@@ -10,8 +10,11 @@ script:
   - ( cd .. ; git clone https://github.com/jjuran/freemount )
   - ( cd .. ; git clone https://github.com/jjuran/ams-68k-bin )
   - INSTALL_PREFIX=/usr ./configure
+  - rm -r var/install/ || true ; mkdir -p ./AppDir ; ( cd var ; ln -s ../AppDir install ) # https://github.com/jjuran/metamage_1/issues/9#issuecomment-487292893
   - make ams-x11-build
   - find .
+  - make ams-x11-install # https://github.com/jjuran/metamage_1/issues/9#issuecomment-487292893
+  - find ./AppDir/
   # FIXME: The following mkdir and cp operations up to "find ./appdir/" should all be done by "make install"
   # https://github.com/jjuran/metamage_1/issues/9#issuecomment-486469039
   - mkdir -p ./appdir/usr/bin/
