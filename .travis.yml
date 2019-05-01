@@ -16,14 +16,15 @@ script:
   - make ams-x11-install # https://github.com/jjuran/metamage_1/issues/9#issuecomment-487292893
   - find ./AppDir/
   - mkdir -p ./AppDir/usr/share/applications/ ; cp ./packaging/linux/ams-x11.desktop ./AppDir/usr/share/applications/ # FIXME
-  - mkdir -p ./AppDir/usr/share/icons/scalable/apps/ ; touch ./AppDir/usr/share/icons/scalable/apps/ams.svg # FIXME
+  - mkdir -p ./AppDir/usr/share/icons/scalable/apps/ ; touch ./AppDir/usr/share/icons/scalable/apps/ams-x11.svg # FIXME
   - cp ./packaging/linux/appimage/AppRun ./AppDir ; chmod +x ./AppDir/AppRun
   - wget -c https://archive.org/download/mac_Lode_Runner/Lode_Runner.dsk
   - mv Lode_Runner.dsk ./AppDir/usr/share/ams/mnt/
-  - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
-  - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
-  - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
-  - ./linuxdeployqt-continuous-x86_64.AppImage AppDir/usr/share/applications/*.desktop -appimage
+  - wget -c -nv "https://github.com/AppImage/AppImageKit/releases/download/11/appimagetool-x86_64.AppImage"
+  - chmod a+x appimagetool-x86_64.AppImage
+  - cp ./AppDir/usr/share/applications/*.desktop ./AppDir/ ; cp ./AppDir/usr/share/icons/scalable/apps/ams-x11.svg ./AppDir/
+  - export VERSION=... # linuxdeployqt uses this for naming the file
+  - ./appimagetool-x86_64.AppImage -g ./AppDir
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
