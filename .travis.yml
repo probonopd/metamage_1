@@ -20,7 +20,7 @@ script:
   - cp ./AppDir/usr/share/applications/*.desktop ./AppDir/ ; cp ./AppDir/usr/share/icons/scalable/apps/ams-x11.svg ./AppDir/
   - export VERSION=$(git rev-parse --short HEAD) # appimagetool uses this for naming the file
   - ./appimagetool-x86_64.AppImage -g ./AppDir
-  - sed -i -e 's|Advanced Mac Substitute|LodeRunner|g' ./AppDir/usr/share/applications/ams-x11.desktop
+  - sed -i -e 's|Advanced Mac Substitute|Lode Runner|g' ./AppDir/usr/share/applications/ams-x11.desktop
   - cp ./AppDir/usr/share/applications/*.desktop ./AppDir/ 
   - wget -c https://archive.org/download/mac_Lode_Runner/Lode_Runner.dsk
   - mv Lode_Runner.dsk ./AppDir/usr/share/ams/mnt/
