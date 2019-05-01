@@ -1,0 +1,6 @@
+#!/bin/bash
+
+HERE="$(dirname "$(readlink -f "${0}")")"
+export PATH="$HERE/usr/bin:$PATH"
+
+AMS_DISK="Lode_Runner.dsk" AMS_APPNAME="Lode Runner" EXHIBIT_INTERACT=interact-x11 ams
