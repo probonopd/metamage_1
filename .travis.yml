@@ -10,11 +10,14 @@ script:
   - ( cd .. ; git clone https://github.com/jjuran/freemount )
   - ( cd .. ; git clone https://github.com/jjuran/ams-68k-bin )
   - INSTALL_PREFIX=/usr ./configure
-  - rm -f var/install ; mkdir -p ./AppDir ; ln -s ../AppDir var/install # https://github.com/jjuran/metamage_1/issues/9#issuecomment-487292893
+  - rm -f var/install ; mkdir -p ./AppDir/usr/ ; ln -s ../AppDir/usr var/install # https://github.com/jjuran/metamage_1/issues/9#issuecomment-487292893
   - make ams-x11-build
   - find .
   - make ams-x11-install # https://github.com/jjuran/metamage_1/issues/9#issuecomment-487292893
   - find ./AppDir/
+  - mkdir -p ./AppDir/usr/share/applications/ ; touch ./AppDir/usr/share/applications/ams.desktop # FIXME
+  - mkdir -p ./AppDir/usr/share/icons/scalable/apps/ ; touch ./AppDir/usr/share/icons/scalable/apps/ams.svg # FIXME
+  - tar cfvj AppDir.tar.bz2 AppDir/
   # FIXME: The following mkdir and cp operations up to "find ./appdir/" should all be done by "make install"
   # https://github.com/jjuran/metamage_1/issues/9#issuecomment-486469039
   - mkdir -p ./appdir/usr/bin/
@@ -36,7 +39,7 @@ script:
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh appdir.tar.bz2
+  - bash upload.sh appdir.tar.bz2 AppDir.tar.bz2
   
 branches:
   except:
