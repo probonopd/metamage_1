@@ -23,7 +23,7 @@ script:
   - wget -c -nv "https://github.com/AppImage/AppImageKit/releases/download/11/appimagetool-x86_64.AppImage"
   - chmod a+x appimagetool-x86_64.AppImage
   - cp ./AppDir/usr/share/applications/*.desktop ./AppDir/ ; cp ./AppDir/usr/share/icons/scalable/apps/ams-x11.svg ./AppDir/
-  - export VERSION=... # linuxdeployqt uses this for naming the file
+  - export VERSION=$(git rev-parse --short HEAD) # appimagetool uses this for naming the file
   - ./appimagetool-x86_64.AppImage -g ./AppDir
 
 after_success:
